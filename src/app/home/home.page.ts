@@ -15,15 +15,15 @@ export class HomePage {
   constructor() {}
 
   adicionarNumero(num: string){
-    if(this.visor.length == 1 && this.visor == '0'){
+    if((this.visor.length == 1 && this.visor == '0') || this.visor == "ERRO!"){
       this.visor = num;
     }else{
       this.visor += num;
     }
   }
 
-  adicionarOperacao(valor: number){
-    this.operacao = valor;
+  adicionarOperacao(operacao: number){
+    this.operacao = operacao;
     this.valor1 = +this.visor;
     this.zerar();
   }
@@ -61,10 +61,11 @@ export class HomePage {
         break;
       }
       case 3:{
-        if(this.valor2 != 0){
+        if(this.valor2 == 0){
+          this.visor = "ERRO!"
+        }else{
           this.visor = "" + (this.valor1 / this.valor2);
         }
-
         break;
       }
       default:{
